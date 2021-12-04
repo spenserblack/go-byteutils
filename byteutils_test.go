@@ -55,7 +55,7 @@ func TestClear(t *testing.T) {
 	}
 }
 
-// TestChange checks taht bits are changed.
+// TestChange checks that bits are changed.
 func TestChange(t *testing.T) {
 	b := Byte(0x0F)
 
@@ -64,5 +64,18 @@ func TestChange(t *testing.T) {
 	want := Byte(0b1000_1110)
 	if b != want {
 		t.Fatalf(`b = %08b, want %08b`, b, want)
+	}
+}
+
+// TestGet checks that the correct value is returned when "indexing" into
+// a byte.
+func TestGet(t *testing.T) {
+	b := Byte(0x0F)
+
+	if actual := b.GetL(4); actual != One {
+		t.Errorf(`4 from left of %08b = %v, want %v`, b, actual, One)
+	}
+	if actual := b.GetR(4); actual != Zero {
+		t.Errorf(`4 from right of %08b = %v, want %v`, b, actual, Zero)
 	}
 }

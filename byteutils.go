@@ -49,6 +49,16 @@ func (b *Byte) ChangeR(index byte, bit Bit) {
 	}
 }
 
+// GetR gets the nth bit from the right.
+func (b Byte) GetR(index byte) Bit {
+	return b.GetR(7 - index)
+}
+
+// GetL gets the nth bit from the left.
+func (b Byte) GetL(index byte) Bit {
+	return Bit(b & (1 << index)).normalize()
+}
+
 // NewBit creates a bit. This is to simplify enforcing that a bit is either 
 // Zero or One. Boolean type and most numerical types can be used as the bit.
 // Floats, complex types, etc. are undefined behavior.
@@ -72,7 +82,7 @@ func (b Bit) AsBool() bool {
 }
 
 // Normalize forces a bit to be either Zero or One
-func normalize(b Bit) Bit {
+func (b Bit) normalize() Bit {
 	if b.AsBool() {
 		return One
 	}
