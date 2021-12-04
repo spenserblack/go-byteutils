@@ -49,7 +49,7 @@ func TestClear(t *testing.T) {
 	b := Byte(0xFF)
 	b.ClearL(1)
 	b.ClearR(1)
-	want := 0b1011_1101
+	want := Byte(0b1011_1101)
 	if b != want {
 		t.Fatalf(`b = %08b, want %08b`, b, want)
 	}
