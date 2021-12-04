@@ -65,7 +65,7 @@ func (b Byte) GetR(index byte) Bit {
 
 // ToggleL flips the nth bit from the left.
 func (b *Byte) ToggleL(index byte) {
-	b.ToggleL(7 - index)
+	b.ToggleR(7 - index)
 }
 
 // ToggleR flips the nth bit from the right.
