@@ -1,3 +1,7 @@
+// Utilities for managing bytes.
+//
+// Note that a byte's indices are [0, 8), and using an index beyond this range
+// may cause a panic or undefined behavior.
 package byteutils
 
 // Byte is a wrapper around the built-in byte that provides additonal
@@ -57,6 +61,11 @@ func (b Byte) GetR(index byte) Bit {
 // GetL gets the nth bit from the left.
 func (b Byte) GetL(index byte) Bit {
 	return Bit(b & (1 << index)).normalize()
+}
+
+// ToggleL flips the nth bit from the left.
+func (b *Byte) ToggleL(index byte) Bit {
+	b.ToggleR(7 - index)
 }
 
 // NewBit creates a bit. This is to simplify enforcing that a bit is either 
