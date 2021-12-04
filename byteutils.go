@@ -19,3 +19,8 @@ const (
 func (b *Byte) SetL(index byte) {
 	*b |= (1 << (7 - index))
 }
+
+// SetR sets the nth bit from the right.
+func (b *Byte) SetR(index byte) {
+	*b |= (1 << index)
+}
