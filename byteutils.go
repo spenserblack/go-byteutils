@@ -64,8 +64,17 @@ func (b Byte) GetL(index byte) Bit {
 }
 
 // ToggleL flips the nth bit from the left.
-func (b *Byte) ToggleL(index byte) Bit {
+func (b *Byte) ToggleL(index byte) {
 	b.ToggleR(7 - index)
+}
+
+// ToggleR flips the nth bit from the right.
+func (b *Byte) ToggleR(index byte) {
+	bit := b.GetR(index)
+	if bit.AsBool() {
+		bit = ^bit
+	}
+	b &= Byte(bit)
 }
 
 // NewBit creates a bit. This is to simplify enforcing that a bit is either 

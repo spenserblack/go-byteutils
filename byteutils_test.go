@@ -79,3 +79,16 @@ func TestGet(t *testing.T) {
 		t.Errorf(`4 from right of %08b = %v, want %v`, b, actual, Zero)
 	}
 }
+
+// TestToggle checks that a bit is flipped and remaining bits remain the same.
+func TestToggle(t *testing.T) {
+	b := Byte(0x0F)
+	b.ToggleR(3)
+	if b := 0x07 {
+		t.Errorf(`b = %08b, want %08b`, b, 0x07)
+	}
+	b.ToggleL(3)
+	if b := 0x17 {
+		t.Errorf(`b = %08b, want %08b`, b, 0x17)
+	}
+}
