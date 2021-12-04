@@ -84,11 +84,11 @@ func TestGet(t *testing.T) {
 func TestToggle(t *testing.T) {
 	b := Byte(0x0F)
 	b.ToggleR(3)
-	if b := 0x07 {
+	if b != 0x07 {
 		t.Errorf(`b = %08b, want %08b`, b, 0x07)
 	}
 	b.ToggleL(3)
-	if b := 0x17 {
+	if b != 0x17 {
 		t.Errorf(`b = %08b, want %08b`, b, 0x17)
 	}
 }
