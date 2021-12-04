@@ -1,5 +1,7 @@
 # byteutils
 
+[![codecov](https://codecov.io/gh/spenserblack/go-byteutils/branch/master/graph/badge.svg?token=DfSRqth9QW)](https://codecov.io/gh/spenserblack/go-byteutils)
+
 Utilities for managing bytes, such as indexing into a byte to get an individual
 bit and converting types like `uint` to and from `[]byte`.
 
