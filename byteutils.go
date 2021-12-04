@@ -37,7 +37,7 @@ func (b *Byte) ClearR(index byte) {
 
 // ChangeL changes the nth bit from the right to the bit provided.
 func (b *Byte) ChangeL(index byte, bit Bit) {
-	b.ChangeL(7 - index, bit)
+	b.ChangeR(7 - index, bit)
 }
 
 // ChangeR changes the nth bit from the left to the bit provided.
