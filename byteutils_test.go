@@ -72,11 +72,11 @@ func TestChange(t *testing.T) {
 func TestGet(t *testing.T) {
 	b := Byte(0x0F)
 
-	if actual := b.GetL(4); actual != One {
-		t.Errorf(`4 from left of %08b = %v, want %v`, b, actual, One)
+	if actual := b.GetL(4); actual != Zero {
+		t.Errorf(`4 from left of %08b = %v, want %v`, b, actual, Zero)
 	}
-	if actual := b.GetR(4); actual != Zero {
-		t.Errorf(`4 from right of %08b = %v, want %v`, b, actual, Zero)
+	if actual := b.GetR(4); actual != One {
+		t.Errorf(`4 from right of %08b = %v, want %v`, b, actual, One)
 	}
 }
 
