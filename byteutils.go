@@ -55,7 +55,7 @@ func (b *Byte) ChangeR(index byte, bit Bit) {
 
 // GetR gets the nth bit from the right.
 func (b Byte) GetR(index byte) Bit {
-	return b.GetR(7 - index)
+	return b.GetL(7 - index)
 }
 
 // GetL gets the nth bit from the left.
