@@ -25,6 +25,23 @@ func (b *Byte) SetR(index byte) {
 	*b |= (1 << index)
 }
 
+// NewBit creates a bit. This is to simplify enforcing that a bit is either 
+// Zero or One. Boolean type and most numerical types can be used as the bit.
+// Floats, complex types, etc. are undefined behavior.
+func NewBit(bit interface{}) Bit {
+	set := false
+	switch v := bit.(type) {
+	case byte, int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64:
+		set = v != 0
+	case bool:
+		set = v
+	}
+	if set {
+		return One
+	}
+	return Zero
+}
+
 // AsBool convers a bit into a bool.
 func (b Bit) AsBool() bool {
 	return b != Zero
