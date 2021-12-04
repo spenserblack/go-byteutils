@@ -53,23 +53,23 @@ func (b *Byte) ChangeR(index byte, bit Bit) {
 	}
 }
 
-// GetR gets the nth bit from the right.
-func (b Byte) GetR(index byte) Bit {
-	return b.GetL(7 - index)
-}
-
-// GetL gets the nth bit from the left.
+// GetL gets the nth bit from the right.
 func (b Byte) GetL(index byte) Bit {
-	return Bit(b & (1 << index)).normalize()
+	return b.GetR(7 - index)
 }
 
-// ToggleR flips the nth bit from the right.
-func (b *Byte) ToggleR(index byte) {
-	b.ToggleL(7 - index)
+// GetR gets the nth bit from the left.
+func (b Byte) GetR(index byte) Bit {
+	return Bit(b & (1 << index)).normalize()
 }
 
 // ToggleL flips the nth bit from the left.
 func (b *Byte) ToggleL(index byte) {
+	b.ToggleL(7 - index)
+}
+
+// ToggleR flips the nth bit from the right.
+func (b *Byte) ToggleR(index byte) {
 	*b ^= 1 << index
 	
 }
