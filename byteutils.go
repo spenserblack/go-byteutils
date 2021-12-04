@@ -31,7 +31,7 @@ func (b *Byte) SetR(index byte) {
 func NewBit(bit interface{}) Bit {
 	set := false
 	switch v := bit.(type) {
-	case byte, int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64:
+	case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64:
 		set = v != 0
 	case bool:
 		set = v
