@@ -54,3 +54,15 @@ func TestClear(t *testing.T) {
 		t.Fatalf(`b = %08b, want %08b`, b, want)
 	}
 }
+
+// TestChange checks taht bits are changed.
+func TestChange(t *testing.T) {
+	b := Byte(0x0F)
+
+	b.ChangeL(0, One)
+	b.ChangeR(0, Zero)
+	want := Byte(0b1000_1110)
+	if b != want {
+		t.Fatalf(`b = %08b, want %08b`, b, want)
+	}
+}

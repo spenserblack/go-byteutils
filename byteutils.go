@@ -35,6 +35,20 @@ func (b *Byte) ClearR(index byte) {
 	*b &= ^(1 << index)
 }
 
+// ChangeL changes the nth bit from the right to the bit provided.
+func (b *Byte) ChangeL(index byte, bit Bit) {
+	b.ChangeL(7 - index, bit)
+}
+
+// ChangeR changes the nth bit from the left to the bit provided.
+func (b *Byte) ChangeR(index byte, bit Bit) {
+	if bit.AsBool() {
+		b.SetR(index)
+	} else {
+		b.ClearR(index)
+	}
+}
+
 // NewBit creates a bit. This is to simplify enforcing that a bit is either 
 // Zero or One. Boolean type and most numerical types can be used as the bit.
 // Floats, complex types, etc. are undefined behavior.
@@ -55,4 +69,12 @@ func NewBit(bit interface{}) Bit {
 // AsBool convers a bit into a bool.
 func (b Bit) AsBool() bool {
 	return b != Zero
+}
+
+// Normalize forces a bit to be either Zero or One
+func normalize(b Bit) Bit {
+	if b.AsBool() {
+		return One
+	}
+	return Zero
 }
