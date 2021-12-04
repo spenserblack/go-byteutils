@@ -5,7 +5,7 @@ package byteutils
 type Byte byte
 
 // Bit abstracts a single bit. The underlying type is byte instead of
-// bool to make conversion to primitive types easier.
+// bool to make conversion usage with bytes simpler.
 type Bit byte
 
 const (
@@ -23,4 +23,9 @@ func (b *Byte) SetL(index byte) {
 // SetR sets the nth bit from the right.
 func (b *Byte) SetR(index byte) {
 	*b |= (1 << index)
+}
+
+// AsBool convers a bit into a bool.
+func (b Bit) AsBool() bool {
+	return b != Zero
 }

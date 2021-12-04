@@ -2,6 +2,16 @@ package byteutils
 
 import "testing"
 
+// TestAsBool checks that a bit is false when it is 0, true otherwise.
+func TestAsBool(t *testing.T) {
+	if Zero.AsBool() {
+		t.Error("want Zero to be false")
+	}
+	if !One.AsBool() {
+		t.Error("want One to be true")
+	}
+}
+
 // TestSetL checks that a bit from the left will be set.
 func TestSetL(t *testing.T) {
 	b := Byte(0)
