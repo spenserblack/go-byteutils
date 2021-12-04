@@ -12,7 +12,7 @@ const (
 	// Zero represents a 0 bit
 	Zero Bit = 0
 	// One represents a 1 bit
-	One = 1
+	One Bit = 1
 )
 
 // SetL sets the nth bit from the left.
