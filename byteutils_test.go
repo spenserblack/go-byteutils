@@ -43,3 +43,14 @@ func TestSetR(t *testing.T) {
 		t.Fatalf(`b = %08b, want 00000001`, b)
 	}
 }
+
+// TestClear checks that a bits are cleared.
+func TestClear(t *testing.T) {
+	b := Byte(0xFF)
+	b.ClearL(1)
+	b.ClearR(1)
+	want := 0b1011_1101
+	if b != want {
+		t.Fatalf(`b = %08b, want %08b`, b, want)
+	}
+}

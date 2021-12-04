@@ -17,12 +17,22 @@ const (
 
 // SetL sets the nth bit from the left.
 func (b *Byte) SetL(index byte) {
-	*b |= (1 << (7 - index))
+	b.SetR(7 - index)
+}
+
+// ClearL clears the nth bit from the left.
+func (b *Byte) ClearL(index byte) {
+	b.ClearR(7 - index)
 }
 
 // SetR sets the nth bit from the right.
 func (b *Byte) SetR(index byte) {
 	*b |= (1 << index)
+}
+
+// ClearR clears the nth bit from the right.
+func (b *Byte) ClearR(index byte) {
+	*b &= ^(1 << index)
 }
 
 // NewBit creates a bit. This is to simplify enforcing that a bit is either 
