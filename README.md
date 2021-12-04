@@ -11,7 +11,7 @@ bit and converting types like `uint` to and from `[]byte`.
 fmt.Println(byteutils.ToUint16([]byte{0x01, 0x00})) // 256
 
 b := Byte(0b0001_0000)
-fmt.Println(b.Indexl(3)) // 1 (index from left)
-b.Setl(4, byteutils.One) // set index 4 from right
-fmt.Println(b.Indexr(3)) // 1 (index from right)
+fmt.Println(b.GetL(3)) // 1 (index from left)
+b.SetL(4) // set index 4 from left to 1
+fmt.Println(b.GetR(3)) // 1 (index from right)
 ```
