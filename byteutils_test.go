@@ -2,8 +2,7 @@ package byteutils
 
 import "testing"
 
-func SanityCheck(t *testing.T) {
-	if Add(1, 2) != 3 {
-		t.Fatalf("1 + 2 != 3")
-	}
+// TestSetL checks that a bit from the left will be set.
+func TestSetL(t *testing.T) {
+	
 }
