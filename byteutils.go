@@ -63,14 +63,14 @@ func (b Byte) GetL(index byte) Bit {
 	return Bit(b & (1 << index)).normalize()
 }
 
-// ToggleL flips the nth bit from the left.
-func (b *Byte) ToggleL(index byte) {
+// ToggleR flips the nth bit from the right.
+func (b *Byte) ToggleR(index byte) {
 	b.ToggleR(7 - index)
 }
 
-// ToggleR flips the nth bit from the right.
-func (b *Byte) ToggleR(index byte) {
-	bit := b.GetR(index)
+// ToggleL flips the nth bit from the left.
+func (b *Byte) ToggleL(index byte) {
+	bit := b.GetL(index)
 	if bit.AsBool() {
 		bit = ^bit
 	}
