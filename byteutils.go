@@ -70,7 +70,7 @@ func (b *Byte) ToggleR(index byte) {
 
 // ToggleL flips the nth bit from the left.
 func (b *Byte) ToggleL(index byte) {
-	bit := b & (1 << index)
+	bit := *b & (1 << index)
 	if bit != 0 {
 		bit = ^bit
 	}
