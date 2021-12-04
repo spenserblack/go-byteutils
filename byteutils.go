@@ -74,7 +74,7 @@ func (b *Byte) ToggleR(index byte) {
 	if bit.AsBool() {
 		bit = ^bit
 	}
-	b &= Byte(bit)
+	*b &= Byte(bit)
 }
 
 // NewBit creates a bit. This is to simplify enforcing that a bit is either 
