@@ -30,7 +30,7 @@ func (b Bytes) ToUint32(e Endian) uint32 {
 
 	if e == BigEndian {
 		for i := smallest; i <= largest; i++ {
-			result |= b[i] << (i * 8)
+			result |= uint32(b[i] << (i * 8))
 		}
 	} else {
 		panic("Not implemented")
