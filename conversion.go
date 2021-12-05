@@ -10,7 +10,7 @@ type Convert interface{
 }
 
 // BytesFromUint16 creates bytes from a uint16.
-func BytesFromUint16(i uint16, e Endian) {
+func BytesFromUint16(i uint16, e Endian) Bytes {
 	smallest, largest := e.byteRange(2)
 	b := make(Bytes, 2)
 	b[smallest] = Byte(i & 0xFF)
