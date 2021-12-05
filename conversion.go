@@ -64,7 +64,7 @@ func (e Endian) IterateSmallestToLargest(b Bytes, f ByteIteratorFunc) {
 
 	if e == BigEndian {
 		for i := smallest; i <= largest; i++ {
-			f(b[i], index)
+			f(b[i], i)
 		}
 	} else {
 		for i := smallest; i >= largest; i-- {
