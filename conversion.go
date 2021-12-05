@@ -9,6 +9,15 @@ type Convert interface{
 	ToUint32(Endian) uint32
 }
 
+// BytesFromUint16 creates bytes from a uint16.
+func BytesFromUint16(i uint16, e Endian) {
+	smallest, largest := e.byteRange(2)
+	b := make(Bytes, 2)
+	b[smallest] = byte(i & 0xFF)
+	b[largest] = byte(i >> 8)
+	return b
+}
+
 // ToUint16 converts Bytes to uint16
 func (b Bytes) ToUint16(e Endian) uint16 {
 	smallest, largest := e.byteRange(2)
