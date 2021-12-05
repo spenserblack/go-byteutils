@@ -36,10 +36,14 @@ func TestBytesFromUint16(t *testing.T) {
 
 	for i, b := range littleEndian {
 		want := littleByteOrder[i]
-		t.Errorf(`byte %d = %02X, want %02X`, i, b, want)
+		if b != want {
+			t.Errorf(`byte %d = %02X, want %02X`, i, b, want)
+		}
 	}
 	for i, b := range bigEndian {
 		want := bigByteOrder[i]
-		t.Errorf(`byte %d = %02X, want %02X`, i, b, want)
+		if b != want {
+			t.Errorf(`byte %d = %02X, want %02X`, i, b, want)
+		}
 	}
 }
