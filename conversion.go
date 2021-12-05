@@ -13,8 +13,8 @@ type Convert interface{
 func BytesFromUint16(i uint16, e Endian) {
 	smallest, largest := e.byteRange(2)
 	b := make(Bytes, 2)
-	b[smallest] = byte(i & 0xFF)
-	b[largest] = byte(i >> 8)
+	b[smallest] = Byte(i & 0xFF)
+	b[largest] = Byte(i >> 8)
 	return b
 }
 
