@@ -34,14 +34,3 @@ func (b Bytes) ToUint32(e Endian) uint32 {
 
 	return result
 }
-
-// ByteRange returns the index of the smallest and the largest bytes.
-func (e Endian) byteRange(byteCount int) (smallest, largest int) {
-	if e == LittleEndian {
-		smallest = byteCount - 1
-	} else {
-		largest = byteCount - 1
-	}
-	return
-}
-

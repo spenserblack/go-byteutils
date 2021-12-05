@@ -27,3 +27,13 @@ func (e Endian) IterateSmallestToLargest(b Bytes, f ByteIteratorFunc) {
 		}
 	}
 }
+
+// ByteRange returns the index of the smallest and the largest bytes.
+func (e Endian) byteRange(byteCount int) (smallest, largest int) {
+	if e == LittleEndian {
+		smallest = byteCount - 1
+	} else {
+		largest = byteCount - 1
+	}
+	return
+}
