@@ -28,18 +28,10 @@ func (b Bytes) ToUint32(e Endian) uint32 {
 	var result uint32
 	smallest, largest := e.byteRange(4)
 
-	enumeration := 0
-	if e == BigEndian {
-		for i := smallest; i <= largest; i++ {
-			result |= uint32(b[i]) << (enumeration * 8)
-			enumeration++
-		}
-	} else {
-		for i := smallest; i >= largest; i-- {
-			result |= uint32(b[i]) << ((enumeration) * 8)
-			enumeration++
-		}
-	}
+	e.IterateSmallestToLargest(b, func(v Byte, enum int) {
+		result |= uint32(v) << (enum * 8)
+	})
+
 	return result
 }
 
