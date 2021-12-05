@@ -26,7 +26,6 @@ func (b Bytes) ToUint16(e Endian) uint16 {
 // ToUint32 converts Bytes to uint16
 func (b Bytes) ToUint32(e Endian) uint32 {
 	var result uint32
-	smallest, largest := e.byteRange(4)
 
 	e.IterateSmallestToLargest(b, func(v Byte, enum int) {
 		result |= uint32(v) << (enum * 8)
