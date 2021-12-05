@@ -34,7 +34,7 @@ func (b Bytes) ToUint32(e Endian) uint32 {
 		}
 	} else {
 		for i := largest; i <= smallest; i++ {
-			result |= uint32(b[i]) << (i * 8)
+			result |= uint32(b[i]) << ((i - smallest) * 8)
 		}
 	}
 	return result
