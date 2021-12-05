@@ -28,18 +28,18 @@ func (b Bytes) ToUint32(e Endian) uint32 {
 	var result uint32
 	smallest, largest := e.byteRange(4)
 
-	result |= uint32(b[smallest])
-	result |= uint32(b[largest]) << 24
+	enumeration := 0
 	if e == BigEndian {
-		smallest--
-		largest++
+		for i := smallest; i <= largest; i++ {
+			result |= uint32(b[i]) << (enumeration * 8)
+			enumeration++
+		}
 	} else {
-		largest--
-		smallest++
+		for i := smallest; i >= largest; i-- {
+			result |= uint32(b[i]) << ((enumeration) * 8)
+			enumeration++
+		}
 	}
-	result |= uint32(b[smallest]) << 8
-	result |= uint32(b[largest]) << 16
-
 	return result
 }
 
@@ -51,4 +51,24 @@ func (e Endian) byteRange(byteCount int) (smallest, largest int) {
 		largest = byteCount - 1
 	}
 	return
+}
+
+// ByteIteratorFunc takes a byte and the enumeration (count of calls to
+// function).
+type ByteIteratorFunc = func(b Byte, enumeration int)
+
+// IterateSmallestToLargest iterates from the smallest byte to the largest
+// byte given the endianness. It will call the provided function on each byte.
+func (e Endian) IterateSmallestToLargest(b Bytes, ByteIteratorFunc) {
+	smallest, largest := e.byteRange(len(b))
+
+	if e == BigEndian {
+		for i := smallest; i <= largest; i++ {
+			ByteIteratorFunc(Bytes[i], index)
+		}
+	} else {
+		for i := smallest; i >= largest; i-- {
+			ByteIteratorFunc(Bytes[i], smallest - i)
+		}
+	}
 }
