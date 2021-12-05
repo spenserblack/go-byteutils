@@ -29,12 +29,12 @@ func TestIterateUint16(t *testing.T) {
 	littleEndian := []Byte{0x10, 0xF0}
 	bigEndian := []Byte{0xF0, 0x10}
 
-	LittleEndian.IterateUint16(b, func(b Byte, index int) {
+	LittleEndian.IterateUint16(v, func(b Byte, index int) {
 		if want := littleEndian[index]; b != want {
 			t.Errorf(`little endian b = %02X, want %02X`, b, want)
 		}
 	})
-	BigEndian.IterateUint16(b, func(b Byte, index int) {
+	BigEndian.IterateUint16(v, func(b Byte, index int) {
 		if want := bigEndian[index]; b != want {
 			t.Errorf(`big endian b = %02X, want %02X`, b, want)
 		}
