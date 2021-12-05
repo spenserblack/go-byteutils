@@ -31,11 +31,11 @@ func (b Bytes) ToUint32(e Endian) uint32 {
 	result |= uint32(b[smallest])
 	result |= uint32(b[largest]) << 24
 	if e == BigEndian {
-		smallest++
-		largest--
-	} else {
-		largest++
 		smallest--
+		largest++
+	} else {
+		largest--
+		smallest++
 	}
 	result |= uint32(b[smallest]) << 8
 	result |= uint32(b[largest]) << 16
