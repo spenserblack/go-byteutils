@@ -35,7 +35,6 @@ func TestIteration(t *testing.T) {
 
 	LittleEndian.IterateSmallestToLargest(b, TestIterationHelper(t, littleEndianOrder))
 	BigEndian.IterateSmallestToLargest(b, TestIterationHelper(t, bigEndianOrder))
-	})
 }
 
 // TestIterationHelper is a helper for checking proper iteration. It returns a
