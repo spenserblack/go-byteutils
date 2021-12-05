@@ -59,16 +59,16 @@ type ByteIteratorFunc = func(b Byte, enumeration int)
 
 // IterateSmallestToLargest iterates from the smallest byte to the largest
 // byte given the endianness. It will call the provided function on each byte.
-func (e Endian) IterateSmallestToLargest(b Bytes, ByteIteratorFunc) {
+func (e Endian) IterateSmallestToLargest(b Bytes, f ByteIteratorFunc) {
 	smallest, largest := e.byteRange(len(b))
 
 	if e == BigEndian {
 		for i := smallest; i <= largest; i++ {
-			ByteIteratorFunc(Bytes[i], index)
+			f(Bytes[i], index)
 		}
 	} else {
 		for i := smallest; i >= largest; i-- {
-			ByteIteratorFunc(Bytes[i], smallest - i)
+			f(Bytes[i], smallest - i)
 		}
 	}
 }
