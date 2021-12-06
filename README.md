@@ -1,5 +1,6 @@
 # byteutils
 
+[![CI](https://github.com/spenserblack/go-byteutils/actions/workflows/ci.yml/badge.svg)](https://github.com/spenserblack/go-byteutils/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/spenserblack/go-byteutils/branch/master/graph/badge.svg?token=DfSRqth9QW)](https://codecov.io/gh/spenserblack/go-byteutils)
 
 Utilities for managing bytes, such as indexing into a byte to get an individual
