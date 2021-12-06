@@ -6,7 +6,7 @@ package byteutils
 
 // Bit abstracts a single bit. The underlying type is byte instead of
 // bool to make conversion usage with bytes simpler.
-type Bit byte
+type Bit = byte
 
 const (
 	// Zero represents a 0 bit
@@ -42,7 +42,7 @@ func ChangeL(b *byte, index byte, bit Bit) {
 
 // ChangeR changes the nth bit from the left to the bit provided.
 func ChangeR(b *byte, index byte, bit Bit) {
-	if bit.AsBool() {
+	if BitAsBool(bit) {
 		SetR(b, index)
 	} else {
 		ClearR(b, index)
@@ -56,7 +56,7 @@ func GetL(b byte, index byte) Bit {
 
 // GetR gets the nth bit from the left.
 func GetR(b byte, index byte) Bit {
-	return Bit(b & (1 << index)).normalize()
+	return normalize(b & (1 << index))
 }
 
 // ToggleL flips the nth bit from the left.
@@ -88,13 +88,13 @@ func NewBit(bit interface{}) Bit {
 }
 
 // AsBool convers a bit into a bool.
-func (b Bit) AsBool() bool {
+func BitAsBool(b Bit) bool {
 	return b != Zero
 }
 
 // Normalize forces a bit to be either Zero or One
-func (b Bit) normalize() Bit {
-	if b.AsBool() {
+func normalize(b Bit) Bit {
+	if BitAsBool(b) {
 		return One
 	}
 	return Zero
