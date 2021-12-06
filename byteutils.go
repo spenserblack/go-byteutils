@@ -41,7 +41,7 @@ func (b *Byte) ClearR(index byte) {
 
 // ChangeL changes the nth bit from the right to the bit provided.
 func (b *Byte) ChangeL(index byte, bit Bit) {
-	b.ChangeR(7 - index, bit)
+	b.ChangeR(7-index, bit)
 }
 
 // ChangeR changes the nth bit from the left to the bit provided.
@@ -71,10 +71,10 @@ func (b *Byte) ToggleL(index byte) {
 // ToggleR flips the nth bit from the right.
 func (b *Byte) ToggleR(index byte) {
 	*b ^= 1 << index
-	
+
 }
 
-// NewBit creates a bit. This is to simplify enforcing that a bit is either 
+// NewBit creates a bit. This is to simplify enforcing that a bit is either
 // Zero or One. Boolean type and most numerical types can be used as the bit.
 // Floats, complex types, etc. are undefined behavior.
 func NewBit(bit interface{}) Bit {
