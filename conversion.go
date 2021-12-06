@@ -11,11 +11,11 @@ type Convert interface{
 
 // BytesFromUint16 creates bytes from a uint16.
 func BytesFromUint16(n uint16, e Endian) Bytes {
-	b := make(Bytes, 2)
-	e.IterateUint16(i, func(b Byte, index int) {
-		b[index] = b
+	bytes := make(Bytes, 2)
+	e.IterateUint16(n, func(b Byte, index int) {
+		bytes[index] = b
 	})
-	return b
+	return bytes
 }
 
 // ToUint16 converts Bytes to uint16
