@@ -2,12 +2,12 @@ package byteutils
 
 import "testing"
 
-// TestAsBool checks that a bit is false when it is 0, true otherwise.
-func TestAsBool(t *testing.T) {
-	if AsBool(Zero) {
+// TestBitAsBool checks that a bit is false when it is 0, true otherwise.
+func TestBitAsBool(t *testing.T) {
+	if BitAsBool(Zero) {
 		t.Error("want Zero to be false")
 	}
-	if !AsBool(One) {
+	if !BitAsBool(One) {
 		t.Error("want One to be true")
 	}
 }
