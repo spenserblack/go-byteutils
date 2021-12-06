@@ -34,7 +34,14 @@ func (e Endian) IterateSmallestToLargest(b Bytes, f ByteIteratorFunc) {
 // endian).
 func (e Endian) IterateUint16(n uint16, f ByteIteratorFunc) {
 	e.iterateNumber(n, f)
+}
 
+// IterateUint32 iterates over a uint32 as bytes, from smallest to largest.
+// Endianness determines if iteration goes from the left-most byte to the
+// right-most (big endian), or the right-most byte to the left-most (little
+// endian).
+func (e Endian) IterateUint32(n uint32, f ByteIteratorFunc) {
+	e.iterateNumber(n, f)
 }
 
 // IterateNumber iterates over a number as bytes, from smallest to largest.

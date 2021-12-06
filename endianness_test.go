@@ -2,7 +2,6 @@ package byteutils
 
 import "testing"
 
-
 // TestIteration tests that little endian and big endian collections of bytes
 // are correctly iterated over.
 func TestIteration(t *testing.T) {
@@ -35,6 +34,25 @@ func TestIterateUint16(t *testing.T) {
 		}
 	})
 	BigEndian.IterateUint16(v, func(b Byte, index int) {
+		if want := bigEndian[index]; b != want {
+			t.Errorf(`big endian b = %02X, want %02X`, b, want)
+		}
+	})
+}
+
+// TestIterateUint32 tests that little endian and big endian collections of bytes
+// are correctly iterated over.
+func TestIterateUint32(t *testing.T) {
+	var v uint32 = 0x3F_7F_BF_FF
+	littleEndian := []Byte{0xFF, 0xBF, 0x7F, 0x3F}
+	bigEndian := []Byte{0x3F, 0x7F, 0xBF, 0xFF}
+
+	LittleEndian.IterateUint32(v, func(b Byte, index int) {
+		if want := littleEndian[index]; b != want {
+			t.Errorf(`little endian b = %02X, want %02X`, b, want)
+		}
+	})
+	BigEndian.IterateUint32(v, func(b Byte, index int) {
 		if want := bigEndian[index]; b != want {
 			t.Errorf(`big endian b = %02X, want %02X`, b, want)
 		}

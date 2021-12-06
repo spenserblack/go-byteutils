@@ -4,7 +4,7 @@ package byteutils
 type Bytes []Byte
 
 // Convert is the type to manage converting to other types.
-type Convert interface{
+type Convert interface {
 	ToUint16(Endian) uint16
 	ToUint32(Endian) uint32
 }
@@ -13,6 +13,15 @@ type Convert interface{
 func BytesFromUint16(n uint16, e Endian) Bytes {
 	bytes := make(Bytes, 2)
 	e.IterateUint16(n, func(b Byte, index int) {
+		bytes[len(bytes)-index-1] = b
+	})
+	return bytes
+}
+
+// BytesFromUint32 creates bytes from a uint32.
+func BytesFromUint32(n uint32, e Endian) Bytes {
+	bytes := make(Bytes, 4)
+	e.IterateUint32(n, func(b Byte, index int) {
 		bytes[len(bytes)-index-1] = b
 	})
 	return bytes

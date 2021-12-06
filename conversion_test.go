@@ -47,3 +47,26 @@ func TestBytesFromUint16(t *testing.T) {
 		}
 	}
 }
+
+// TestBytesFromUint32 tests that a uint32 can be created from a little-endian
+// and big-endian slice of bytes.
+func TestBytesFromUint32(t *testing.T) {
+	var v uint32 = 0x3F_7F_BF_FF
+	littleEndian := BytesFromUint32(v, LittleEndian)
+	bigEndian := BytesFromUint32(v, BigEndian)
+	littleByteOrder := Bytes{0x3F, 0x7F, 0xBF, 0xFF}
+	bigByteOrder := Bytes{0xFF, 0xBF, 0x7F, 0x3F}
+
+	for i, b := range littleEndian {
+		want := littleByteOrder[i]
+		if b != want {
+			t.Errorf(`byte %d = %02X, want %02X`, i, b, want)
+		}
+	}
+	for i, b := range bigEndian {
+		want := bigByteOrder[i]
+		if b != want {
+			t.Errorf(`byte %d = %02X, want %02X`, i, b, want)
+		}
+	}
+}
