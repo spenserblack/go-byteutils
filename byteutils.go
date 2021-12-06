@@ -1,4 +1,4 @@
-// Utilities for managing bytes.
+// Package byteutils contains utilities for managing bytes.
 //
 // Note that a byte's indices are [0, 8), and using an index beyond this range
 // may cause a panic or undefined behavior.
