@@ -4,10 +4,6 @@
 // may cause a panic or undefined behavior.
 package byteutils
 
-// Byte is a wrapper around the built-in byte that provides additonal
-// functionality.
-type Byte byte
-
 // Bit abstracts a single bit. The underlying type is byte instead of
 // bool to make conversion usage with bytes simpler.
 type Bit byte
@@ -20,56 +16,56 @@ const (
 )
 
 // SetL sets the nth bit from the left.
-func (b *Byte) SetL(index byte) {
-	b.SetR(7 - index)
+func SetL(b *byte, index byte) {
+	SetR(b, 7-index)
 }
 
 // ClearL clears the nth bit from the left.
-func (b *Byte) ClearL(index byte) {
-	b.ClearR(7 - index)
+func ClearL(b *byte, index byte) {
+	ClearR(b, 7-index)
 }
 
 // SetR sets the nth bit from the right.
-func (b *Byte) SetR(index byte) {
+func SetR(b *byte, index byte) {
 	*b |= (1 << index)
 }
 
 // ClearR clears the nth bit from the right.
-func (b *Byte) ClearR(index byte) {
+func ClearR(b *byte, index byte) {
 	*b &= ^(1 << index)
 }
 
 // ChangeL changes the nth bit from the right to the bit provided.
-func (b *Byte) ChangeL(index byte, bit Bit) {
-	b.ChangeR(7-index, bit)
+func ChangeL(b *byte, index byte, bit Bit) {
+	ChangeR(b, 7-index, bit)
 }
 
 // ChangeR changes the nth bit from the left to the bit provided.
-func (b *Byte) ChangeR(index byte, bit Bit) {
+func ChangeR(b *byte, index byte, bit Bit) {
 	if bit.AsBool() {
-		b.SetR(index)
+		SetR(b, index)
 	} else {
-		b.ClearR(index)
+		ClearR(b, index)
 	}
 }
 
 // GetL gets the nth bit from the right.
-func (b Byte) GetL(index byte) Bit {
-	return b.GetR(7 - index)
+func GetL(b byte, index byte) Bit {
+	return GetR(b, 7-index)
 }
 
 // GetR gets the nth bit from the left.
-func (b Byte) GetR(index byte) Bit {
+func GetR(b byte, index byte) Bit {
 	return Bit(b & (1 << index)).normalize()
 }
 
 // ToggleL flips the nth bit from the left.
-func (b *Byte) ToggleL(index byte) {
-	b.ToggleR(7 - index)
+func ToggleL(b *byte, index byte) {
+	ToggleR(b, 7-index)
 }
 
 // ToggleR flips the nth bit from the right.
-func (b *Byte) ToggleR(index byte) {
+func ToggleR(b *byte, index byte) {
 	*b ^= 1 << index
 
 }

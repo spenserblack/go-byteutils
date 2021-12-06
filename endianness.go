@@ -9,8 +9,9 @@ const (
 )
 
 // ByteIteratorFunc takes a byte and the enumeration (count of calls to
-// function).
-type ByteIteratorFunc = func(b Byte, enumeration int)
+// function). A pointer is passed so that the byte can be potentially
+// modified.
+type ByteIteratorFunc = func(b *byte, enumeration int)
 
 // IterateSmallestToLargest iterates from the smallest byte to the largest
 // byte given the endianness. It will call the provided function on each byte.
@@ -19,11 +20,11 @@ func (e Endian) IterateSmallestToLargest(b Bytes, f ByteIteratorFunc) {
 
 	if e == BigEndian {
 		for i := smallest; i <= largest; i++ {
-			f(b[i], i)
+			f(&b[i], i)
 		}
 	} else {
 		for i := smallest; i >= largest; i-- {
-			f(b[i], smallest-i)
+			f(&b[i], smallest-i)
 		}
 	}
 }
@@ -63,15 +64,15 @@ func (e Endian) iterateNumber(n interface{}, f ByteIteratorFunc) {
 		for i := smallest; i <= largest; i++ {
 			shift := (largest - i) * 8
 			var intersect uint32 = 0xFF << shift
-			b := Byte((value & intersect) >> shift)
-			f(b, i)
+			b := byte((value & intersect) >> shift)
+			f(&b, i)
 		}
 	} else {
 		for i := largest; i <= smallest; i++ {
 			shift := i * 8
 			var intersect uint32 = 0xFF << shift
-			b := Byte((value & intersect) >> shift)
-			f(b, i)
+			b := byte((value & intersect) >> shift)
+			f(&b, i)
 		}
 	}
 }
