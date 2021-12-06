@@ -28,8 +28,8 @@ func TestNewBit(t *testing.T) {
 
 // TestSetL checks that a bit from the left will be set.
 func TestSetL(t *testing.T) {
-	b := Byte(0)
-	b.SetL(0)
+	var b byte = 0
+	SetL(&b, 0)
 	if b != 0b1000_0000 {
 		t.Fatalf(`b = %08b, want 10000000`, b)
 	}
@@ -37,8 +37,8 @@ func TestSetL(t *testing.T) {
 
 // TestSetR checks that a bit from the left will be set.
 func TestSetR(t *testing.T) {
-	b := Byte(0)
-	b.SetR(0)
+	var b byte = 0
+	SetR(&b, 0)
 	if b != 0b0000_0001 {
 		t.Fatalf(`b = %08b, want 00000001`, b)
 	}
@@ -46,10 +46,10 @@ func TestSetR(t *testing.T) {
 
 // TestClear checks that a bits are cleared.
 func TestClear(t *testing.T) {
-	b := Byte(0xFF)
-	b.ClearL(1)
-	b.ClearR(0)
-	want := Byte(0b1011_1110)
+	var b byte = 0xFF
+	ClearL(&b, 1)
+	ClearR(&b, 0)
+	var want byte = 0b1011_1110
 	if b != want {
 		t.Fatalf(`b = %08b, want %08b`, b, want)
 	}
@@ -57,11 +57,11 @@ func TestClear(t *testing.T) {
 
 // TestChange checks that bits are changed.
 func TestChange(t *testing.T) {
-	b := Byte(0x0F)
+	var b byte = 0x0F
 
-	b.ChangeL(0, One)
-	b.ChangeR(0, Zero)
-	want := Byte(0b1000_1110)
+	ChangeL(&b, 0, One)
+	ChangeR(&b, 0, Zero)
+	var want byte = 0b1000_1110
 	if b != want {
 		t.Fatalf(`b = %08b, want %08b`, b, want)
 	}
@@ -70,24 +70,24 @@ func TestChange(t *testing.T) {
 // TestGet checks that the correct value is returned when "indexing" into
 // a byte.
 func TestGet(t *testing.T) {
-	b := Byte(0x0F)
+	var b byte = 0x0F
 
-	if actual := b.GetL(4); actual != One {
+	if actual := GetL(b, 4); actual != One {
 		t.Errorf(`4 from left of %08b = %v, want %v`, b, actual, One)
 	}
-	if actual := b.GetR(4); actual != Zero {
+	if actual := GetR(b, 4); actual != Zero {
 		t.Errorf(`4 from right of %08b = %v, want %v`, b, actual, Zero)
 	}
 }
 
 // TestToggle checks that a bit is flipped and remaining bits remain the same.
 func TestToggle(t *testing.T) {
-	b := Byte(0x0F)
-	b.ToggleR(3)
+	var b byte = 0x0F
+	ToggleR(&b, 3)
 	if b != 0x07 {
 		t.Errorf(`b = %08b, want %08b`, b, 0x07)
 	}
-	b.ToggleL(3)
+	ToggleL(&b, 3)
 	if b != 0x17 {
 		t.Errorf(`b = %08b, want %08b`, b, 0x17)
 	}
