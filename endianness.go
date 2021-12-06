@@ -37,7 +37,7 @@ func (e Endian) IterateUint16(n uint16, f ByteIteratorFunc) {
 
 	if e == BigEndian {
 		for i := smallest; i <= largest; i++ {
-			shift := i * 8
+			shift := (largest - i) * 8
 			var intersect uint16 = 0xFF << shift
 			b := Byte((n & intersect) >> shift)
 			f(b, i)
@@ -45,7 +45,7 @@ func (e Endian) IterateUint16(n uint16, f ByteIteratorFunc) {
 	} else {
 		for i := smallest; i >= largest; i-- {
 			enumeration := smallest - i
-			shift := i * 8
+			shift := (largest - i) * 8
 			var intersect uint16 = 0xFF << shift
 			b := Byte((n & intersect) >> shift)
 			f(b, enumeration)
