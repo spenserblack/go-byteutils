@@ -23,7 +23,7 @@ func (e Endian) IterateSmallestToLargest(b Bytes, f ByteIteratorFunc) {
 		}
 	} else {
 		for i := smallest; i >= largest; i-- {
-			f(b[i], smallest - i)
+			f(b[i], smallest-i)
 		}
 	}
 }
@@ -33,20 +33,37 @@ func (e Endian) IterateSmallestToLargest(b Bytes, f ByteIteratorFunc) {
 // right-most (big endian), or the right-most byte to the left-most (little
 // endian).
 func (e Endian) IterateUint16(n uint16, f ByteIteratorFunc) {
-	smallest, largest := e.byteRange(2)
+	e.iterateNumber(n, f)
+
+}
+
+// IterateNumber iterates over a number as bytes, from smallest to largest.
+func (e Endian) iterateNumber(n interface{}, f ByteIteratorFunc) {
+	var smallest, largest int
+	var value uint32
+	switch v := n.(type) {
+	case uint16:
+		smallest, largest = e.byteRange(2)
+		value = uint32(v)
+	case uint32:
+		smallest, largest = e.byteRange(4)
+		value = v
+	default:
+		panic("unreachable")
+	}
 
 	if e == BigEndian {
 		for i := smallest; i <= largest; i++ {
 			shift := (largest - i) * 8
-			var intersect uint16 = 0xFF << shift
-			b := Byte((n & intersect) >> shift)
+			var intersect uint32 = 0xFF << shift
+			b := Byte((value & intersect) >> shift)
 			f(b, i)
 		}
 	} else {
 		for i := largest; i <= smallest; i++ {
 			shift := i * 8
-			var intersect uint16 = 0xFF << shift
-			b := Byte((n & intersect) >> shift)
+			var intersect uint32 = 0xFF << shift
+			b := Byte((value & intersect) >> shift)
 			f(b, i)
 		}
 	}
