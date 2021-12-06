@@ -6,7 +6,7 @@ package byteutils
 
 // Bit abstracts a single bit. The underlying type is byte instead of
 // bool to make conversion usage with bytes simpler.
-type Bit byte
+type Bit = byte
 
 const (
 	// Zero represents a 0 bit
@@ -88,12 +88,12 @@ func NewBit(bit interface{}) Bit {
 }
 
 // AsBool convers a bit into a bool.
-func (b Bit) AsBool() bool {
+func BitAsBool(b Bit) bool {
 	return b != Zero
 }
 
 // Normalize forces a bit to be either Zero or One
-func (b Bit) normalize() Bit {
+func normalize(b Bit) Bit {
 	if b.AsBool() {
 		return One
 	}
