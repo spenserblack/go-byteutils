@@ -35,7 +35,7 @@ func (e Endian) IterateSmallestToLargest(b Bytes, f ByteIteratorFunc) {
 func (e Endian) IterateUint16(n uint16, f ByteIteratorFunc) {
 	smallest, largest := e.byteRange(2)
 
-	if e == LittleEndian {
+	if e == BigEndian {
 		for i := smallest; i <= largest; i++ {
 			shift := i * 8
 			var intersect uint16 = 0xFF << shift
