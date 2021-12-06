@@ -4,10 +4,10 @@ import "testing"
 
 // TestAsBool checks that a bit is false when it is 0, true otherwise.
 func TestAsBool(t *testing.T) {
-	if Zero.AsBool() {
+	if AsBool(Zero) {
 		t.Error("want Zero to be false")
 	}
-	if !One.AsBool() {
+	if !AsBool(One) {
 		t.Error("want One to be true")
 	}
 }

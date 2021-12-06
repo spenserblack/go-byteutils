@@ -42,7 +42,7 @@ func ChangeL(b *byte, index byte, bit Bit) {
 
 // ChangeR changes the nth bit from the left to the bit provided.
 func ChangeR(b *byte, index byte, bit Bit) {
-	if bit.AsBool() {
+	if AsBool(bit) {
 		SetR(b, index)
 	} else {
 		ClearR(b, index)
@@ -56,7 +56,7 @@ func GetL(b byte, index byte) Bit {
 
 // GetR gets the nth bit from the left.
 func GetR(b byte, index byte) Bit {
-	return Bit(b & (1 << index)).normalize()
+	return normalize(b & (1 << index))
 }
 
 // ToggleL flips the nth bit from the left.
@@ -94,7 +94,7 @@ func BitAsBool(b Bit) bool {
 
 // Normalize forces a bit to be either Zero or One
 func normalize(b Bit) Bit {
-	if b.AsBool() {
+	if AsBool(b) {
 		return One
 	}
 	return Zero
