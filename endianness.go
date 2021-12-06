@@ -4,8 +4,12 @@ package byteutils
 type Endian bool
 
 const (
+	// LittleEndian places the least significant byte at the end (right side) of
+	// a byte sequence.
 	LittleEndian Endian = false
-	BigEndian    Endian = true
+	// BigEndian places the most significant byte at the end (right side) of a
+	// byte sequence
+	BigEndian Endian = true
 )
 
 // ByteIteratorFunc takes a byte and the enumeration (count of calls to
