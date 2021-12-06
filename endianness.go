@@ -56,8 +56,6 @@ func (e Endian) iterateNumber(n interface{}, f ByteIteratorFunc) {
 	case uint32:
 		smallest, largest = e.byteRange(4)
 		value = v
-	default:
-		panic("unreachable")
 	}
 
 	if e == BigEndian {
