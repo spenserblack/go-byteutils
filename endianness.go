@@ -43,12 +43,11 @@ func (e Endian) IterateUint16(n uint16, f ByteIteratorFunc) {
 			f(b, i)
 		}
 	} else {
-		for i := smallest; i >= largest; i-- {
-			enumeration := smallest - i
+		for i := largest; i <= smallest; i++ {
 			shift := i * 8
 			var intersect uint16 = 0xFF << shift
 			b := Byte((n & intersect) >> shift)
-			f(b, enumeration)
+			f(b, i)
 		}
 	}
 }
