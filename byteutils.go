@@ -87,7 +87,7 @@ func NewBit(bit interface{}) Bit {
 	return Zero
 }
 
-// BitAsBool convers a bit into a bool.
+// BitAsBool converts a bit into a bool.
 func BitAsBool(b Bit) bool {
 	return b != Zero
 }
