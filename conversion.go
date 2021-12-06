@@ -13,7 +13,7 @@ type Convert interface{
 func BytesFromUint16(n uint16, e Endian) Bytes {
 	bytes := make(Bytes, 2)
 	e.IterateUint16(n, func(b Byte, index int) {
-		bytes[index] = b
+		bytes[len(bytes)-index-1] = b
 	})
 	return bytes
 }
