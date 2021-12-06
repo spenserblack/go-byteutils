@@ -9,7 +9,7 @@ bit and converting types like `uint` to and from `[]byte`.
 ## Example
 
 ```go
-fmt.Println(byteutils.ToUint16([]byte{0x01, 0x00})) // 256
+fmt.Println(byteutils.ToUint16([]byte{0x01, 0x00}, LittleEndian)) // 256
 
 b := Byte(0b0001_0000)
 fmt.Println(b.GetL(3)) // 1 (index from left)
