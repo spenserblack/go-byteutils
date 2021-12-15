@@ -17,4 +17,6 @@ b := 0b0001_0000
 fmt.Println(byteutils.GetL(b, 3)) // 1 (index from left)
 byteutils.SetL(&b, 4) // set index 4 from left to 1
 fmt.Println(byteutils.GetR(b, 3)) // 1 (index from right)
+
+fmt.Printf("%b\n", byteutils.SliceL(0b00110000, 2, 4)) // 11
 ```
