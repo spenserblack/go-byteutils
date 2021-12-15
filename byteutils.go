@@ -61,7 +61,7 @@ func GetR(b byte, index byte) Bit {
 
 // SliceL gets the [i, end) bits from the left.
 func SliceL(b byte, i, end byte) byte {
-	return (b >> (8 - end)) & (byte(0xFF) >> i)
+	return SliceR(b, 8-end, 8-i)
 }
 
 // SliceR gets the [i, end) bits from the right.
@@ -69,7 +69,7 @@ func SliceL(b byte, i, end byte) byte {
 // i will be the "index" of the bit farthest to the right, and end is the index
 // of the bit further left from the right.
 func SliceR(b byte, i, end byte) byte {
-	return (b >> i) & (byte(0xFF) >> (8 - end))
+	return (b >> i) & (byte(0xFF) >> (8 - (end - i)))
 }
 
 // ToggleL flips the nth bit from the left.

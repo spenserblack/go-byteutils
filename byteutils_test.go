@@ -82,19 +82,25 @@ func TestGet(t *testing.T) {
 
 // TestSlice checks that the correct "slice" of the byte is returned.
 func TestSlice(t *testing.T) {
-	var b byte = 0b0011_1100
+	var b byte = 0b0001_1011
 
-	if actual := SliceL(b, 0, 4); actual != 0b0011 {
-		t.Errorf(`4 bits from left of %08b = %v, want 3`, b, actual)
+	if actual := SliceL(b, 0, 4); actual != 0b0001 {
+		t.Errorf(`4 bits from left of %08b = %v, want 1`, b, actual)
 	}
-	if actual := SliceR(b, 0, 4); actual != 0b1100 {
+	if actual := SliceR(b, 0, 4); actual != 0b1011 {
+		t.Errorf(`4 bits from right of %08b = %v, want 11`, b, actual)
+	}
+	if actual := SliceL(b, 2, 6); actual != 0b0110 {
+		t.Errorf(`4 bits from left of %08b = %v, want 6`, b, actual)
+	}
+	if actual := SliceR(b, 2, 6); actual != 0b0110 {
 		t.Errorf(`4 bits from right of %08b = %v, want 6`, b, actual)
 	}
-	if actual := SliceL(b, 2, 6); actual != 0b1111 {
-		t.Errorf(`4 bits from left of %08b = %v, want 15`, b, actual)
+	if actual := SliceL(b, 4, 6); actual != 0b10 {
+		t.Errorf(`2 bits 4 from left of %08b = %v, want 2`, b, actual)
 	}
-	if actual := SliceR(b, 2, 6); actual != 0b1111 {
-		t.Errorf(`4 bits from right of %08b = %v, want 15`, b, actual)
+	if actual := SliceR(b, 4, 6); actual != 0b01 {
+		t.Errorf(`2 bits 4 from right of %08b = %v, want 1`, b, actual)
 	}
 }
 
