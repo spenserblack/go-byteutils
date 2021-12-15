@@ -49,12 +49,12 @@ func ChangeR(b *byte, index byte, bit Bit) {
 	}
 }
 
-// GetL gets the nth bit from the right.
+// GetL gets the nth bit from the left.
 func GetL(b byte, index byte) Bit {
 	return GetR(b, 7-index)
 }
 
-// GetR gets the nth bit from the left.
+// GetR gets the nth bit from the right.
 func GetR(b byte, index byte) Bit {
 	return normalize(b & (1 << index))
 }
