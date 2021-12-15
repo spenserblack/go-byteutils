@@ -94,7 +94,7 @@ func TestSlice(t *testing.T) {
 		t.Errorf(`4 bits from left of %08b = %v, want 15`, b, actual)
 	}
 	if actual := SliceR(b, 2, 6); actual != 0b1111 {
-		t.Errorf(`4 bits from left of %08b = %v, want 15`, b, actual)
+		t.Errorf(`4 bits from right of %08b = %v, want 15`, b, actual)
 	}
 }
 
