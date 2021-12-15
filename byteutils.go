@@ -61,7 +61,7 @@ func GetR(b byte, index byte) Bit {
 
 // SliceL gets the [i, end) bits from the left.
 func SliceL(b byte, i, end byte) byte {
-	return 0
+	return (b >> (8 - end)) & (byte(0xFF) >> i)
 }
 
 // SliceR gets the [i, end) bits from the right.
