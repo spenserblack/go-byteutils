@@ -80,6 +80,24 @@ func TestGet(t *testing.T) {
 	}
 }
 
+// TestSlice checks that the correct "slice" of the byte is returned.
+func TestSlice(t *testing.T) {
+	var b byte = 0b0011_1100
+
+	if actual := SliceL(b, 0, 4); actual != 0b0011 {
+		t.Errorf(`4 bits from left of %08b = %v, want 3`, b, actual)
+	}
+	if actual := SliceR(b, 0, 4); actual != 0b1100 {
+		t.Errorf(`4 bits from right of %08b = %v, want 6`, b, actual)
+	}
+	if actual := SliceL(b, 2, 6); actual != 0b1111 {
+		t.Errorf(`4 bits from left of %08b = %v, want 15`, b, actual)
+	}
+	if actual := SliceR(b, 2, 6); actual != 0b1111 {
+		t.Errorf(`4 bits from right of %08b = %v, want 15`, b, actual)
+	}
+}
+
 // TestToggle checks that a bit is flipped and remaining bits remain the same.
 func TestToggle(t *testing.T) {
 	var b byte = 0x0F
